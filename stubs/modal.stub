@@ -1,0 +1,37 @@
+<script setup lang="ts">
+import { Head } from '@inertiajs/vue3'
+import { useModal } from '@honed/modal'
+import Modal from '@/Components/Modal'
+import { Text } from "@/Components/Text";
+import { Button } from '@/Components/Button'
+
+interface Props {
+    
+}
+
+const { } = defineProps<Props>()
+
+const { show, close, redirect } = useModal();
+
+</script>
+
+<template>
+    <Head title="" />
+    <Modal :open="show" @update:open="close">
+        <Modal.Content @after-leave="redirect">
+            <Modal.Header :close>
+                <Modal.Title>
+
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="ghost" @click="close">
+                    Cancel
+                </Button>
+            </Modal.Footer>
+        </Modal.Content>
+    </Modal>
+</template>

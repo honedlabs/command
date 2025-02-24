@@ -1,0 +1,86 @@
+{
+    "name": "honed/command",
+    "description": "Scaffold out PHP and JS boilerplate.",
+    "keywords": [
+        "honed",
+        "laravel",
+        "command",
+        "inertia"
+    ],
+    "homepage": "https://github.com/honedlabs/command",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Wallace",
+            "homepage": "https://joshua-wallace.com",
+            "email": "josh@joshua-wallace.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/contracts": "^11.0||^12.0",
+        "illuminate/support": "^11.0||^12.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.18",
+        "nunomaduro/collision": "^8.1",
+        "orchestra/testbench": "^9.0.0",
+        "pestphp/pest": "^3.5.1",
+        "pestphp/pest-plugin-arch": "^3.0.0",
+        "phpstan/extension-installer": "^1.4.3",
+        "phpstan/phpstan-deprecation-rules": "^2.0.1",
+        "phpstan/phpstan-phpunit": "^2.0.3",
+        "pestphp/pest-plugin-laravel": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Honed\\Command\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Honed\\Command\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": [
+            "@composer run prepare",
+            "@php vendor/bin/testbench workbench:build --ansi"
+        ],
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@composer run build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint",
+        "check": [
+            "@composer run analyse",
+            "@composer run test",
+            "@composer run format"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Honed\\Command\\CommandServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
