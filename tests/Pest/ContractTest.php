@@ -10,3 +10,12 @@ it('makes', function () {
 
     $this->assertFileExists(app_path('Contracts/ShouldAct.php'));
 });
+
+it('prompts for a name', function () {
+    $this->artisan('make:contract', [
+        '--force' => true,
+    ])->expectsQuestion('What should the contract be named?', 'Actionable')
+        ->assertSuccessful();
+
+    $this->assertFileExists(app_path('Contracts/Actionable.php'));
+});

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-// it('makes', function () {
-//     $this->artisan('make:builder', [
-//         'name' => 'ProductBuilder',
-//         '--force' => true,
-//     ])->assertSuccessful();
+it('makes', function () {
+    $this->artisan('make:builder', [
+        'name' => 'ProductBuilder',
+        '--force' => true,
+    ])->assertSuccessful();
 
-//     $this->assertFileExists(app_path('Builders/ProductBuilder.php'));
-// });
+    $this->assertFileExists(app_path('Builders/ProductBuilder.php'));
+});
 
 it('accepts a model option', function () {
     // Create a model
@@ -35,3 +35,11 @@ it('accepts a model option', function () {
     expect($model)->toContain('return new ProductBuilder($query);');
 });
 
+it('prompts for a name', function () {
+    $this->artisan('make:builder', [
+        '--force' => true,
+    ])->expectsQuestion('What should the builder be named?', 'UserBuilder')
+        ->assertSuccessful();
+
+    $this->assertFileExists(app_path('Builders/UserBuilder.php'));
+});

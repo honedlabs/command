@@ -18,6 +18,10 @@ final class CommandServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->publishes([
+            __DIR__.'/../stubs' => base_path('stubs'),
+        ], 'stubs');
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 BuilderMakeCommand::class,

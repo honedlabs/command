@@ -10,3 +10,12 @@ it('makes', function () {
 
     $this->assertFileExists(app_path('Concerns/HasProducts.php'));
 });
+
+it('prompts for a name', function () {
+    $this->artisan('make:concern', [
+        '--force' => true,
+    ])->expectsQuestion('What should the concern be named?', 'HasUser')
+        ->assertSuccessful();
+
+    $this->assertFileExists(app_path('Concerns/HasUser.php'));
+});
