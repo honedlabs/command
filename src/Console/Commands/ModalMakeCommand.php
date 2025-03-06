@@ -38,7 +38,7 @@ class ModalMakeCommand extends JsMakeCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/modal.stub');
+        return $this->resolveStubPath('/stubs/honed.modal.stub');
     }
 
     /**

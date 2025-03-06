@@ -40,7 +40,7 @@ class BuilderMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/builder.stub');
+        return $this->resolveStubPath('/stubs/honed.builder.stub');
     }
 
     /**

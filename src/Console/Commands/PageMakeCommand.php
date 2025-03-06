@@ -38,7 +38,7 @@ class PageMakeCommand extends JsMakeCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/page.stub');
+        return $this->resolveStubPath('/stubs/honed.page.stub');
     }
 
     /**

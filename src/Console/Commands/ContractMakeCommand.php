@@ -39,7 +39,7 @@ class ContractMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/contract.stub');
+        return $this->resolveStubPath('/stubs/honed.contract.stub');
     }
 
     /**

@@ -39,7 +39,7 @@ class ConcernMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/concern.stub');
+        return $this->resolveStubPath('/stubs/honed.concern.stub');
     }
 
     /**
