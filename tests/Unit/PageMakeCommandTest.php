@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\File;
+
+beforeEach(function () {
+    File::cleanDirectory(resource_path('js/Pages'));
+});
+
 it('makes', function () {
     $this->artisan('make:page', [
         'name' => 'Product/Index',

@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 use Illuminate\Database\Eloquent\Builder;
-{{ model }}
-final class {{ class }} extends Builder
+
+/**
+ * @template TModel of {{ model }}
+ * 
+ * @extends \Illuminate\Database\Eloquent\Builder<TModel>
+ */
+class {{ class }} extends Builder
 {
 
 }

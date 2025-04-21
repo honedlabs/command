@@ -2,13 +2,19 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\File;
+
+beforeEach(function () {
+    File::cleanDirectory(app_path('Builders'));
+});
+
 it('makes', function () {
     $this->artisan('make:builder', [
-        'name' => 'ProductBuilder',
+        'name' => 'UserBuilder',
         '--force' => true,
     ])->assertSuccessful();
 
-    $this->assertFileExists(app_path('Builders/ProductBuilder.php'));
+    $this->assertFileExists(app_path('Builders/UserBuilder.php'));
 });
 
 it('accepts a model option', function () {
@@ -19,7 +25,6 @@ it('accepts a model option', function () {
     ])->assertSuccessful();
 
     $this->assertFileExists(app_path('Models/Product.php'));
-
 
     // Then create the builder
     $this->artisan('make:builder', [

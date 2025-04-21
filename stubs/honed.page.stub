@@ -11,7 +11,7 @@ interface Props {
     
 }
 
-const { } = defineProps<Props>()
+const { ...props } = defineProps<Props>()
 
 
 </script>

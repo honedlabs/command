@@ -1,0 +1,13 @@
+import { ref, computed } from 'vue'
+
+export interface Options {
+
+}
+
+export function usePartial(
+    options: Options = {}
+) {
+    return {
+
+    }
+}

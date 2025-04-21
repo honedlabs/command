@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3'
 import { useModal } from '@honed/modal'
-import Modal from '@/Components/Modal'
 import { Text } from "@/Components/Text";
 import { Button } from '@/Components/Button'
+import Modal from '@/Components/Modal'
 
 interface Props {
     

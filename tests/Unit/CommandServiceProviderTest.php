@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\File;
 use Honed\Command\CommandServiceProvider;
 
 it('publishes stubs', function () {
-    // Delete the stub directory
     $path = base_path('stubs');
 
     if (file_exists($path)) {
@@ -15,7 +14,7 @@ it('publishes stubs', function () {
 
     $this->artisan('vendor:publish', [
         '--provider' => CommandServiceProvider::class,
-        '--tag' => 'stubs',
+        '--tag' => 'command-stubs',
     ])->assertSuccessful();
 
     $path = base_path('stubs/*.stub');

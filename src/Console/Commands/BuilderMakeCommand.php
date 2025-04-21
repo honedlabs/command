@@ -89,8 +89,8 @@ class BuilderMakeCommand extends GeneratorCommand
     {
         return [
             'name' => [
-                'What should the '.strtolower($this->type).' be named?',
-                'E.g. PostBuilder',
+                'What should the '.\mb_strtolower($this->type).' be named?',
+                'E.g. UserBuilder',
             ],
         ];
     }
@@ -123,25 +123,20 @@ class BuilderMakeCommand extends GeneratorCommand
     {
         $searches = ['DummyModel', '{{ model }}', '{{ Model }}', '{{model}}', '{{Model}}'];
 
+        /** @var string|null */
         $model = $this->option('model');
 
         if (! $model) {
-            \str_replace($searches, '', $stub);
-
-            return $this;
-        }
-
-        // Ensure it is a model
-        if (! \in_array($model, $this->possibleModels())) {
+            $model = '\\Illuminate\\Database\\Eloquent\\Model';
+        } elseif (\in_array($model, $this->possibleModels())) {
+            $model = '\\'.$this->qualifyModel($model);
+        } else {
             $this->error('The model '.$model.' does not exist.');
 
             return $this;
         }
 
-        // Define the TModel of the builder
-        $message = \sprintf("\n/**\n* @template TModel of \\%s\n*/", $this->qualifyModel($model));
-
-        $stub = str_replace($searches, $message, $stub);
+        $stub = \str_replace($searches, $model, $stub);
 
         return $this;
     }
@@ -205,23 +200,29 @@ class BuilderMakeCommand extends GeneratorCommand
      */
     protected function getInserts($name, $model)
     {
+        $generic = \sprintf(
+            '%s<\\%s>',
+            $name,
+            $this->qualifyModel($model)
+        );
+
         $eloquentDocBlock = \sprintf(
             "\n\t/**\n\t * Create a new %s query builder for the model.\n\t *\n\t * @return \\%s\n\t */",
             $model,
-            $name
+            $generic
         );
 
         $newEloquentBuilder = \sprintf(
             "\n\tpublic function newEloquentBuilder(\$query)\n\t{\n\t\treturn new %s(\$query);\n\t}\n",
-            class_basename($name)
+            \class_basename($name)
         );
 
         $queryDocBlock = \sprintf(
             "\n\t/**\n\t * Begin querying the model.\n\t *\n\t * @return \\%s\n\t */",
-            $name
+            $generic
         );
 
-        $query = "\n\tpublic static function query()\n\t{\n\t\treturn parent::query();\n\t}\n";
+        $query = "\n\tpublic static function query()\n\t{\n\t\t// @phpstan-ignore-next-line\n\t\treturn parent::query();\n\t}\n";
 
         $functions = $eloquentDocBlock.$newEloquentBuilder.$queryDocBlock.$query;
 
