@@ -149,6 +149,7 @@ class BuilderMakeCommand extends GeneratorCommand
      */
     protected function insertBuilder($name)
     {
+        /** @var string|null */
         $model = $this->option('model');
 
         if (! $model || ! \in_array($model, $this->possibleModels())) {

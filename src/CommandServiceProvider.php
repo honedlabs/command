@@ -10,6 +10,7 @@ use Honed\Command\Console\Commands\ContractMakeCommand;
 use Honed\Command\Console\Commands\ModalMakeCommand;
 use Honed\Command\Console\Commands\PageMakeCommand;
 use Honed\Command\Console\Commands\PartialMakeCommand;
+use Honed\Command\Console\Commands\ServiceMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
 final class CommandServiceProvider extends ServiceProvider
@@ -21,16 +22,17 @@ final class CommandServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../stubs' => base_path('stubs'),
-        ], 'command-stubs');
+        ], 'stubs');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
                 BuilderMakeCommand::class,
                 ConcernMakeCommand::class,
                 ContractMakeCommand::class,
+                ModalMakeCommand::class,
                 PageMakeCommand::class,
                 PartialMakeCommand::class,
-                ModalMakeCommand::class,
+                ServiceMakeCommand::class,
             ]);
         }
     }

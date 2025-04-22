@@ -14,7 +14,7 @@ it('publishes stubs', function () {
 
     $this->artisan('vendor:publish', [
         '--provider' => CommandServiceProvider::class,
-        '--tag' => 'command-stubs',
+        '--tag' => 'stubs',
     ])->assertSuccessful();
 
     $path = base_path('stubs/*.stub');
