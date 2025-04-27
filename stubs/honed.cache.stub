@@ -1,0 +1,27 @@
+<?php
+
+namespace {{ namespace }};
+
+use Honed\Command\CacheManager;
+
+/**
+ * @extends \Honed\Command\CacheManager
+ */
+class {{ class }} extends CacheManager
+{
+        /**
+     * {@inheritdoc}
+     */
+    public function key($parameter)
+    {
+        return [$parameter->id];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function value($parameter)
+    {
+        return $parameter;
+    }
+}

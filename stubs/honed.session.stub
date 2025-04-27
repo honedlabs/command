@@ -2,9 +2,11 @@
 
 namespace {{ namespace }};
 
+use Illuminate\Contracts\Session\Session;
+
 class {{ class }}
 {
     public function __construct(
-
+        protected Session $session
     ) { }
 }

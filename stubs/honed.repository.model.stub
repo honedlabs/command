@@ -1,0 +1,83 @@
+<?php
+
+namespace {{ namespace }};
+
+use Honed\Command\Repository;
+use {{ namespacedModel }};
+
+/**
+ * @template TModel of \{{ namespacedModel }}
+ */
+class {{ class }} extends Repository
+{
+    /**
+     * Create a new repository instance.
+     * 
+     * @param  TModel {{ modelVariable }}
+     */
+    public function __construct(
+        protected {{ model }} ${{ modelVariable }}
+    ) { }
+
+    /**
+     * Get all the {{ model }} instances.
+     * 
+     * @return \Illuminate\Database\Eloquent\Collection<TModel>
+     */
+    public function all()
+    {
+        return $this->{{ modelVariable }}->query()
+            ->get();
+    }
+
+    /**
+     * Create a new model instance.
+     * 
+     * @param  array<string,mixed>  $attributes
+     * @return TModel
+     */
+    public function store($attributes = [])
+    {
+        return $this->{{ modelVariable }}->query()
+            ->create($attributes);
+    }
+
+    /**
+     * Get the model by its id.
+     * 
+     * @param  int  $id
+     * @return TModel|null
+     */
+    public function show($id)
+    {
+        return $this->{{ modelVariable }}->query()
+            ->find($id);
+    }
+
+    /**
+     * Update the model by its id.
+     * 
+     * @param  int|string  $id
+     * @param  array<string,mixed>  $attributes
+     * @return TModel
+     */
+    public function update($id, $attributes = [])
+    {
+        return $this->{{ modelVariable }}->query()
+            ->find($id)
+            ?->update($attributes);
+    }
+
+    /**
+     * Delete the model by its id.
+     * 
+     * @param  int|string  $id
+     * @return bool
+     */
+    public function destroy($id)
+    {
+        return $this->{{ modelVariable }}->query()
+            ->find($id)
+            ?->delete();
+    }
+}

@@ -2,9 +2,10 @@
 
 namespace {{ namespace }};
 
-class {{ class }}
+use Honed\Command\Repository;
+
+class {{ class }} extends Repository
 {
     public function __construct(
-
     ) { }
 }

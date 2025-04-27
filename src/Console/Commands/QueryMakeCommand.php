@@ -8,29 +8,29 @@ use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-#[AsCommand(name: 'make:service')]
-class ServiceMakeCommand extends GeneratorCommand
+#[AsCommand(name: 'make:query')]
+class QueryMakeCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:service';
+    protected $name = 'make:query';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new service class.';
+    protected $description = 'Create a new query class.';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Service';
+    protected $type = 'Query';
 
     /**
      * Get the stub file for the generator.
@@ -39,7 +39,7 @@ class ServiceMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/honed.service.stub');
+        return $this->resolveStubPath('/stubs/honed.query.stub');
     }
 
     /**
@@ -63,7 +63,7 @@ class ServiceMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Services';
+        return $rootNamespace.'\Queries';
     }
 
     /**
@@ -74,7 +74,7 @@ class ServiceMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the service already exists'],
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the query already exists'],
         ];
     }
 
@@ -88,7 +88,7 @@ class ServiceMakeCommand extends GeneratorCommand
         return [
             'name' => [
                 'What should the '.strtolower($this->type).' be named?',
-                'E.g. GithubService',
+                'E.g. TrendingQuestionsFeed',
             ],
         ];
     }

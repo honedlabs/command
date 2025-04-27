@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Honed\Command\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
-use Illuminate\Database\Eloquent\Builder;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 

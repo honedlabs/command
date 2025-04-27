@@ -8,29 +8,29 @@ use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-#[AsCommand(name: 'make:service')]
-class ServiceMakeCommand extends GeneratorCommand
+#[AsCommand(name: 'make:session')]
+class SessionMakeCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:service';
+    protected $name = 'make:session';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new service class.';
+    protected $description = 'Create a new session class.';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Service';
+    protected $type = 'Session';
 
     /**
      * Get the stub file for the generator.
@@ -39,7 +39,7 @@ class ServiceMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/honed.service.stub');
+        return $this->resolveStubPath('/stubs/honed.session.stub');
     }
 
     /**
@@ -63,7 +63,26 @@ class ServiceMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Services';
+        return $rootNamespace.'\Sessions';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildClass($name)
+    {
+        $class = parent::buildClass($name);
+
+        $name = ($this->qualifyClass($this->getNameInput()));
+
+        $this->call('make:facade', [
+            'name' => \class_basename($name),
+            '--class' => $name,
+            // @phpstan-ignore-next-line
+            '--force' => $this->hasOption('force') && (bool) $this->option('force'),
+        ]);
+
+        return $class;
     }
 
     /**
@@ -74,7 +93,8 @@ class ServiceMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the service already exists'],
+            ['facade', 'f', InputOption::VALUE_NONE, 'Create a facade for the session'],
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the session already exists'],
         ];
     }
 
@@ -88,7 +108,7 @@ class ServiceMakeCommand extends GeneratorCommand
         return [
             'name' => [
                 'What should the '.strtolower($this->type).' be named?',
-                'E.g. GithubService',
+                'E.g. UserSession',
             ],
         ];
     }

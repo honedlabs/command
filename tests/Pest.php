@@ -7,7 +7,8 @@ use Honed\Command\Tests\Stubs\Status;
 use Honed\Command\Tests\TestCase;
 use Illuminate\Support\Str;
 
-uses(TestCase::class)->in(__DIR__);
+uses(TestCase::class)
+    ->in(__DIR__);
 
 function product(?string $name = null): Product
 {

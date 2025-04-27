@@ -1,0 +1,14 @@
+<?php
+
+namespace {{ namespace }};
+
+class {{ class }}
+{
+    /**
+     * Execute the class as a function.
+     */
+    public function __invoke(): void
+    {
+        //
+    }
+}
