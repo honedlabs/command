@@ -40,6 +40,7 @@ class RepositoryMakeCommand extends GeneratorCommand
     {
         $stub = parent::buildClass($name);
 
+        /** @var string|null */
         $model = $this->option('model');
 
         return $model ? $this->replaceModel($stub, $model) : $stub;

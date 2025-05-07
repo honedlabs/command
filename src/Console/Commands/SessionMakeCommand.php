@@ -78,8 +78,7 @@ class SessionMakeCommand extends GeneratorCommand
         $this->call('make:facade', [
             'name' => \class_basename($name),
             '--class' => $name,
-            // @phpstan-ignore-next-line
-            '--force' => $this->hasOption('force') && (bool) $this->option('force'),
+            '--force' => (bool) $this->option('force'),
         ]);
 
         return $class;
