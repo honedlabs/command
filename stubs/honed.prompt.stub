@@ -1,0 +1,19 @@
+<?php
+
+namespace {{ namespace }};
+
+class {{ class }}
+{
+    /**
+     * Populate the prompt using the given inputs.
+     *
+     * @param  mixed  $inputs
+     * @return string
+     */
+    public function __invoke(mixed $inputs): string
+    {
+        return <<<EOT
+            You are a...   
+        EOT;
+    }
+}

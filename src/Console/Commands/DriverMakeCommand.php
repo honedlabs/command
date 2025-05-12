@@ -8,29 +8,29 @@ use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-#[AsCommand(name: 'make:cache')]
-class CacheMakeCommand extends GeneratorCommand
+#[AsCommand(name: 'make:driver')]
+class DriverMakeCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:cache';
+    protected $name = 'make:driver';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new cache class.';
+    protected $description = 'Create a new driver class.';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Cache';
+    protected $type = 'Driver';
 
     /**
      * Get the stub file for the generator.
@@ -39,7 +39,7 @@ class CacheMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/honed.cache.stub');
+        return $this->resolveStubPath('/stubs/honed.driver.stub');
     }
 
     /**
@@ -63,7 +63,7 @@ class CacheMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Caches';
+        return $rootNamespace.'\Drivers';
     }
 
     /**
@@ -74,21 +74,21 @@ class CacheMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the cache already exists'],
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the driver already exists'],
         ];
     }
 
     /**
-     * Prompt for missing input arguments using the returned questions.
+     * Driver for missing input arguments using the returned questions.
      *
      * @return array<string,mixed>
      */
-    protected function promptForMissingArgumentsUsing()
+    protected function driverForMissingArgumentsUsing()
     {
         return [
             'name' => [
                 'What should the '.strtolower($this->type).' be named?',
-                'E.g. UserCache',
+                'E.g. RedisDriver',
             ],
         ];
     }

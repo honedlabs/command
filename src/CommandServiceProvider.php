@@ -8,11 +8,13 @@ use Honed\Command\Console\Commands\BuilderMakeCommand;
 use Honed\Command\Console\Commands\CacheMakeCommand;
 use Honed\Command\Console\Commands\ConcernMakeCommand;
 use Honed\Command\Console\Commands\ContractMakeCommand;
+use Honed\Command\Console\Commands\DriverMakeCommand;
 use Honed\Command\Console\Commands\FacadeMakeCommand;
 use Honed\Command\Console\Commands\InvokableMakeCommand;
 use Honed\Command\Console\Commands\ModalMakeCommand;
 use Honed\Command\Console\Commands\PageMakeCommand;
 use Honed\Command\Console\Commands\PartialMakeCommand;
+use Honed\Command\Console\Commands\PromptMakeCommand;
 use Honed\Command\Console\Commands\QueryMakeCommand;
 use Honed\Command\Console\Commands\RepositoryMakeCommand;
 use Honed\Command\Console\Commands\ServiceMakeCommand;
@@ -36,11 +38,13 @@ class CommandServiceProvider extends ServiceProvider
                 CacheMakeCommand::class,
                 ConcernMakeCommand::class,
                 ContractMakeCommand::class,
+                DriverMakeCommand::class,
                 FacadeMakeCommand::class,
                 InvokableMakeCommand::class,
                 ModalMakeCommand::class,
                 PageMakeCommand::class,
                 PartialMakeCommand::class,
+                PromptMakeCommand::class,
                 QueryMakeCommand::class,
                 RepositoryMakeCommand::class,
                 ServiceMakeCommand::class,

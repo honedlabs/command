@@ -5,11 +5,11 @@ namespace {{ namespace }};
 use Honed\Command\CacheManager;
 
 /**
- * @extends \Honed\Command\CacheManager
+ * @extends \Honed\Command\CacheManager<mixed, mixed>
  */
 class {{ class }} extends CacheManager
 {
-        /**
+    /**
      * {@inheritdoc}
      */
     public function key($parameter)

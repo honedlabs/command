@@ -8,29 +8,29 @@ use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-#[AsCommand(name: 'make:cache')]
-class CacheMakeCommand extends GeneratorCommand
+#[AsCommand(name: 'make:prompt')]
+class PromptMakeCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:cache';
+    protected $name = 'make:prompt';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new cache class.';
+    protected $description = 'Create a new prompt class.';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Cache';
+    protected $type = 'Prompt';
 
     /**
      * Get the stub file for the generator.
@@ -39,7 +39,7 @@ class CacheMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/honed.cache.stub');
+        return $this->resolveStubPath('/stubs/honed.prompt.stub');
     }
 
     /**
@@ -63,7 +63,7 @@ class CacheMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Caches';
+        return $rootNamespace.'\Prompts';
     }
 
     /**
@@ -74,7 +74,7 @@ class CacheMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the cache already exists'],
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the prompt already exists'],
         ];
     }
 
@@ -88,7 +88,7 @@ class CacheMakeCommand extends GeneratorCommand
         return [
             'name' => [
                 'What should the '.strtolower($this->type).' be named?',
-                'E.g. UserCache',
+                'E.g. MarkdownPrompt',
             ],
         ];
     }
