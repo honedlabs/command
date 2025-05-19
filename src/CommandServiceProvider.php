@@ -10,6 +10,7 @@ use Honed\Command\Console\Commands\ConcernMakeCommand;
 use Honed\Command\Console\Commands\ContractMakeCommand;
 use Honed\Command\Console\Commands\DriverMakeCommand;
 use Honed\Command\Console\Commands\FacadeMakeCommand;
+use Honed\Command\Console\Commands\FlyweightMakeCommand;
 use Honed\Command\Console\Commands\InvokableMakeCommand;
 use Honed\Command\Console\Commands\ModalMakeCommand;
 use Honed\Command\Console\Commands\PageMakeCommand;
@@ -28,11 +29,9 @@ class CommandServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->publishes([
-            __DIR__.'/../stubs' => base_path('stubs'),
-        ], 'stubs');
-
         if ($this->app->runningInConsole()) {
+            $this->offerPublishing();
+
             $this->commands([
                 BuilderMakeCommand::class,
                 CacheMakeCommand::class,
@@ -40,6 +39,7 @@ class CommandServiceProvider extends ServiceProvider
                 ContractMakeCommand::class,
                 DriverMakeCommand::class,
                 FacadeMakeCommand::class,
+                FlyweightMakeCommand::class,
                 InvokableMakeCommand::class,
                 ModalMakeCommand::class,
                 PageMakeCommand::class,
@@ -51,5 +51,17 @@ class CommandServiceProvider extends ServiceProvider
                 SessionMakeCommand::class,
             ]);
         }
+    }
+
+    /**
+     * Register the publishing for the package.
+     *
+     * @return void
+     */
+    protected function offerPublishing()
+    {
+        $this->publishes([
+            __DIR__.'/../stubs' => base_path('stubs'),
+        ], 'command-stubs');
     }
 }
