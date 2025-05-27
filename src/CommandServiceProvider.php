@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Honed\Command;
 
+use Honed\Command\Console\Commands\AttributeMakeCommand;
 use Honed\Command\Console\Commands\BuilderMakeCommand;
 use Honed\Command\Console\Commands\CacheMakeCommand;
 use Honed\Command\Console\Commands\ConcernMakeCommand;
@@ -33,6 +34,7 @@ class CommandServiceProvider extends ServiceProvider
             $this->offerPublishing();
 
             $this->commands([
+                AttributeMakeCommand::class,
                 BuilderMakeCommand::class,
                 CacheMakeCommand::class,
                 ConcernMakeCommand::class,
