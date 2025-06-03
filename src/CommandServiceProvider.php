@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace Honed\Command;
 
-use Honed\Command\Console\Commands\AttributeMakeCommand;
-use Honed\Command\Console\Commands\BuilderMakeCommand;
-use Honed\Command\Console\Commands\CacheMakeCommand;
-use Honed\Command\Console\Commands\ConcernMakeCommand;
-use Honed\Command\Console\Commands\ContractMakeCommand;
-use Honed\Command\Console\Commands\DriverMakeCommand;
-use Honed\Command\Console\Commands\FacadeMakeCommand;
-use Honed\Command\Console\Commands\FlyweightMakeCommand;
-use Honed\Command\Console\Commands\InvokableMakeCommand;
-use Honed\Command\Console\Commands\ModalMakeCommand;
-use Honed\Command\Console\Commands\PageMakeCommand;
-use Honed\Command\Console\Commands\PartialMakeCommand;
-use Honed\Command\Console\Commands\PromptMakeCommand;
-use Honed\Command\Console\Commands\QueryMakeCommand;
-use Honed\Command\Console\Commands\RepositoryMakeCommand;
-use Honed\Command\Console\Commands\ServiceMakeCommand;
-use Honed\Command\Console\Commands\SessionMakeCommand;
+use Honed\Command\Commands\AttributeMakeCommand;
+use Honed\Command\Commands\BuilderMakeCommand;
+use Honed\Command\Commands\CacheMakeCommand;
+use Honed\Command\Commands\ConcernMakeCommand;
+use Honed\Command\Commands\ContractMakeCommand;
+use Honed\Command\Commands\DriverMakeCommand;
+use Honed\Command\Commands\FacadeMakeCommand;
+use Honed\Command\Commands\FlyweightMakeCommand;
+use Honed\Command\Commands\InvokableMakeCommand;
+use Honed\Command\Commands\ModalMakeCommand;
+use Honed\Command\Commands\PageMakeCommand;
+use Honed\Command\Commands\PartialMakeCommand;
+use Honed\Command\Commands\PromptMakeCommand;
+use Honed\Command\Commands\QueryMakeCommand;
+use Honed\Command\Commands\RepositoryMakeCommand;
+use Honed\Command\Commands\ServiceMakeCommand;
+use Honed\Command\Commands\SessionMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
 class CommandServiceProvider extends ServiceProvider

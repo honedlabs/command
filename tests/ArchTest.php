@@ -9,7 +9,7 @@ arch('it will not use debugging functions')
     ->each->not->toBeUsed();
 
 arch('commands')
-    ->expect('Honed\Command\Console\Commands')
+    ->expect('Honed\Command\Commands')
     ->toBeClasses()
     ->toExtend(Command::class);
 

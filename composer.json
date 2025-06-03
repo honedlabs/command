@@ -1,11 +1,11 @@
 {
     "name": "honed/command",
-    "description": "Scaffold out PHP and JS boilerplate.",
+    "description": "Accelerate your development workflow with a generator commands and utility classes.",
     "keywords": [
         "honed",
         "laravel",
         "command",
-        "inertia"
+        "generator"
     ],
     "homepage": "https://github.com/honedlabs/command",
     "license": "MIT",
@@ -41,21 +41,25 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Honed\\Command\\Tests\\": "tests/"
+            "Honed\\Command\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "scripts": {
-        "post-autoload-dump": "@composer run prepare",
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare",
+            "@composer run prepare"
+        ],
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "build": [
-            "@composer run prepare",
-            "@php vendor/bin/testbench workbench:build --ansi"
-        ],
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
         "serve": [
             "Composer\\Config::disableProcessTimeout",
-            "@composer run build",
-            "@php vendor/bin/testbench serve"
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
         ],
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
@@ -65,6 +69,10 @@
             "@composer run analyse",
             "@composer run test",
             "@composer run format"
+        ],
+        "lint": [
+            "@php vendor/bin/pint --ansi",
+            "@php vendor/bin/phpstan analyse --verbose --ansi"
         ]
     },
     "config": {

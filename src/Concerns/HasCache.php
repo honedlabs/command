@@ -6,6 +6,7 @@ namespace Honed\Command\Concerns;
 
 use Honed\Command\Attributes\Cache;
 use Honed\Command\CacheManager;
+use ReflectionClass;
 
 /**
  * @template TCache of \Honed\Command\CacheManager
@@ -71,7 +72,7 @@ trait HasCache
      */
     protected static function getCacheAttribute()
     {
-        $attributes = (new \ReflectionClass(static::class))
+        $attributes = (new ReflectionClass(static::class))
             ->getAttributes(Cache::class);
 
         if ($attributes !== []) {

@@ -6,6 +6,7 @@ namespace Honed\Command\Concerns;
 
 use Honed\Command\Attributes\Repository as RepositoryAttribute;
 use Honed\Command\Repository;
+use ReflectionClass;
 
 /**
  * @template TRepository of \Honed\Command\Repository
@@ -52,7 +53,7 @@ trait HasRepository
      */
     protected static function getRepositoryAttribute()
     {
-        $attributes = (new \ReflectionClass(static::class))
+        $attributes = (new ReflectionClass(static::class))
             ->getAttributes(RepositoryAttribute::class);
 
         if ($attributes !== []) {

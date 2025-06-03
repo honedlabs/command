@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Honed\Command;
 
+use Closure;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Str;
+use Throwable;
 
 abstract class Repository
 {
@@ -20,7 +22,7 @@ abstract class Repository
     /**
      * How to resolve the repository name for the given class name.
      *
-     * @var (\Closure(class-string):class-string<\Honed\Command\Repository>)|null
+     * @var (Closure(class-string):class-string<Repository>)|null
      */
     protected static $repositoryNameResolver;
 
@@ -28,7 +30,7 @@ abstract class Repository
      * Get the repository for a class.
      *
      * @param  class-string  $class
-     * @return \Honed\Command\Repository
+     * @return Repository
      */
     public static function repositoryForModel($class)
     {
@@ -41,7 +43,7 @@ abstract class Repository
      * Get the table name for the given model name.
      *
      * @param  class-string  $className
-     * @return class-string<\Honed\Command\Repository>
+     * @return class-string<Repository>
      */
     public static function resolveRepositoryName($className)
     {
@@ -52,27 +54,11 @@ abstract class Repository
                 ? Str::after($className, $appNamespace.'Models\\')
                 : Str::after($className, $appNamespace);
 
-            /** @var class-string<\Honed\Command\Repository> */
+            /** @var class-string<Repository> */
             return static::$namespace.$className.'Repository';
         };
 
         return $resolver($className);
-    }
-
-    /**
-     * Get the application namespace for the application.
-     *
-     * @return string
-     */
-    protected static function appNamespace()
-    {
-        try {
-            return Container::getInstance()
-                ->make(Application::class)
-                ->getNamespace();
-        } catch (\Throwable) {
-            return 'App\\';
-        }
     }
 
     /**
@@ -89,7 +75,7 @@ abstract class Repository
     /**
      * Specify the callback that should be invoked to guess the name of a model table.
      *
-     * @param  \Closure(class-string):class-string<\Honed\Command\Repository>  $callback
+     * @param  Closure(class-string):class-string<Repository>  $callback
      * @return void
      */
     public static function guessRepositoryNamesUsing($callback)
@@ -106,5 +92,21 @@ abstract class Repository
     {
         static::$repositoryNameResolver = null;
         static::$namespace = 'App\\Repositories\\';
+    }
+
+    /**
+     * Get the application namespace for the application.
+     *
+     * @return string
+     */
+    protected static function appNamespace()
+    {
+        try {
+            return Container::getInstance()
+                ->make(Application::class)
+                ->getNamespace();
+        } catch (Throwable) {
+            return 'App\\';
+        }
     }
 }
