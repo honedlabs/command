@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Str;
-use Workbench\App\Models\User;
-use Workbench\App\Caches\UserCache;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
+use Workbench\App\Caches\UserCache;
+use Workbench\App\Models\User;
 
 beforeEach(function () {
     $this->cache = new UserCache();
