@@ -10,29 +10,29 @@ use Symfony\Component\Console\Input\InputOption;
 
 use function trim;
 
-#[AsCommand(name: 'make:invokable')]
-class InvokableMakeCommand extends GeneratorCommand
+#[AsCommand(name: 'make:response')]
+class ResponseMakeCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:invokable';
+    protected $name = 'make:response';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new invokable class.';
+    protected $description = 'Create a new response class.';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Invokable';
+    protected $type = 'Response';
 
     /**
      * Get the stub file for the generator.
@@ -41,7 +41,7 @@ class InvokableMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/honed.invokable.stub');
+        return $this->resolveStubPath('/stubs/honed.response.stub');
     }
 
     /**
@@ -65,7 +65,7 @@ class InvokableMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Invokables';
+        return $rootNamespace.'\Responses';
     }
 
     /**
@@ -76,21 +76,21 @@ class InvokableMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the invokable already exists'],
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the response already exists'],
         ];
     }
 
     /**
-     * Prompt for missing input arguments using the returned questions.
+     * Response for missing input arguments using the returned questions.
      *
      * @return array<string,mixed>
      */
-    protected function promptForMissingArgumentsUsing()
+    protected function responseForMissingArgumentsUsing()
     {
         return [
             'name' => [
                 'What should the '.mb_strtolower($this->type).' be named?',
-                'E.g. GenerateUserInvoice',
+                'E.g. Download',
             ],
         ];
     }

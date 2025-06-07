@@ -19,6 +19,7 @@ use Honed\Command\Commands\PartialMakeCommand;
 use Honed\Command\Commands\PromptMakeCommand;
 use Honed\Command\Commands\QueryMakeCommand;
 use Honed\Command\Commands\RepositoryMakeCommand;
+use Honed\Command\Commands\ResponseMakeCommand;
 use Honed\Command\Commands\ServiceMakeCommand;
 use Honed\Command\Commands\SessionMakeCommand;
 use Illuminate\Support\ServiceProvider;
@@ -49,6 +50,7 @@ class CommandServiceProvider extends ServiceProvider
                 PromptMakeCommand::class,
                 QueryMakeCommand::class,
                 RepositoryMakeCommand::class,
+                ResponseMakeCommand::class,
                 ServiceMakeCommand::class,
                 SessionMakeCommand::class,
             ]);
