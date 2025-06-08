@@ -13,13 +13,13 @@ class TestCase extends Orchestra
     use RefreshDatabase;
     use WithWorkbench;
 
-        /**
+    /**
      * Get package providers.
      *
      * @param  \Illuminate\Foundation\Application  $app
      * @return array<int, class-string<\Illuminate\Support\ServiceProvider>>
      */
-    protected function getPackageProviders($app) 
+    protected function getPackageProviders($app)
     {
         return [
             \Honed\Command\CommandServiceProvider::class,
