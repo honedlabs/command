@@ -5,11 +5,17 @@ declare(strict_types=1);
 use Honed\Command\CommandServiceProvider;
 use Illuminate\Support\Facades\File;
 
-it('publishes stubs', function () {
-    $path = base_path('stubs');
+beforeEach(function () {
+    $this->path = base_path('stubs');
+});
 
-    if (file_exists($path)) {
-        File::deleteDirectory($path);
+afterEach(function () {
+    File::deleteDirectory($this->path);
+});
+
+it('publishes stubs', function () {
+    if (file_exists($this->path)) {
+        File::deleteDirectory($this->path);
     }
 
     $this->artisan('vendor:publish', [
@@ -17,11 +23,11 @@ it('publishes stubs', function () {
         '--tag' => 'command-stubs',
     ])->assertSuccessful();
 
-    $path = base_path('stubs/*.stub');
-    expect(\count(glob($path)))
+    $this->path = base_path('stubs/*.stub');
+    expect(\count(glob($this->path)))
         ->toEqual(\count(glob(realpath(__DIR__.'/../../stubs').'/*.stub')));
 
-    foreach (\glob($path) as $file) {
+    foreach (\glob($this->path) as $file) {
         $this->assertFileExists($file);
     }
-})->skip();
+});
