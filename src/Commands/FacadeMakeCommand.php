@@ -10,8 +10,8 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 use function class_basename;
+use function mb_trim;
 use function str_replace;
-use function trim;
 
 #[AsCommand(name: 'make:facade')]
 class FacadeMakeCommand extends GeneratorCommand
@@ -55,7 +55,7 @@ class FacadeMakeCommand extends GeneratorCommand
      */
     protected function resolveStubPath($stub)
     {
-        return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
+        return file_exists($customPath = $this->laravel->basePath(mb_trim($stub, '/')))
             ? $customPath
             : __DIR__.'/../../..'.$stub;
     }
@@ -168,7 +168,7 @@ class FacadeMakeCommand extends GeneratorCommand
             return '';
         }
 
-        $class = ltrim($class, '\\/');
+        $class = mb_ltrim($class, '\\/');
 
         return "use {$class};";
     }
