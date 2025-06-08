@@ -9,7 +9,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 use function class_basename;
-use function trim;
+use function mb_trim;
 
 #[AsCommand(name: 'make:session')]
 class SessionMakeCommand extends GeneratorCommand
@@ -53,7 +53,7 @@ class SessionMakeCommand extends GeneratorCommand
      */
     protected function resolveStubPath($stub)
     {
-        return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
+        return file_exists($customPath = $this->laravel->basePath(mb_trim($stub, '/')))
             ? $customPath
             : __DIR__.'/../..'.$stub;
     }
