@@ -10,29 +10,29 @@ use Symfony\Component\Console\Input\InputOption;
 
 use function trim;
 
-#[AsCommand(name: 'make:invokable')]
-class InvokableMakeCommand extends GeneratorCommand
+#[AsCommand(name: 'make:process')]
+class ProcessMakeCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:invokable';
+    protected $name = 'make:process';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new invokable class.';
+    protected $description = 'Create a new process class.';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Invokable';
+    protected $type = 'Process';
 
     /**
      * Get the stub file for the generator.
@@ -41,7 +41,7 @@ class InvokableMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/honed.invokable.stub');
+        return $this->resolveStubPath('/stubs/honed.process.stub');
     }
 
     /**
@@ -65,7 +65,7 @@ class InvokableMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Invokables';
+        return $rootNamespace.'\Processs';
     }
 
     /**
@@ -76,7 +76,7 @@ class InvokableMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the invokable already exists'],
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the process already exists'],
         ];
     }
 
@@ -90,7 +90,7 @@ class InvokableMakeCommand extends GeneratorCommand
         return [
             'name' => [
                 'What should the '.mb_strtolower($this->type).' be named?',
-                'E.g. GenerateUserInvoice',
+                'E.g. UserCreationProcess',
             ],
         ];
     }

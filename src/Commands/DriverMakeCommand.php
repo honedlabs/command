@@ -8,7 +8,7 @@ use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-use function mb_trim;
+use function trim;
 
 #[AsCommand(name: 'make:driver')]
 class DriverMakeCommand extends GeneratorCommand
@@ -52,7 +52,7 @@ class DriverMakeCommand extends GeneratorCommand
      */
     protected function resolveStubPath($stub)
     {
-        return file_exists($customPath = $this->laravel->basePath(mb_trim($stub, '/')))
+        return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
             ? $customPath
             : __DIR__.'/../..'.$stub;
     }
@@ -81,11 +81,11 @@ class DriverMakeCommand extends GeneratorCommand
     }
 
     /**
-     * Driver for missing input arguments using the returned questions.
+     * Prompt for missing input arguments using the returned questions.
      *
      * @return array<string,mixed>
      */
-    protected function driverForMissingArgumentsUsing()
+    protected function promptForMissingArgumentsUsing()
     {
         return [
             'name' => [
