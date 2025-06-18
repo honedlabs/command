@@ -5,9 +5,9 @@ namespace {{ namespace }};
 use Honed\Command\Process;
 
 /**
- * @template TPayload
+ * @template TPayload of mixed
  * 
- * @extends Honed\Command\Process<TPayload>
+ * @extends \Honed\Command\Process<TPayload>
  */
 class {{ class }} extends Process
 {

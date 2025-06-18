@@ -12,9 +12,9 @@ use function class_basename;
 use function file_get_contents;
 use function in_array;
 use function mb_strtolower;
-use function mb_trim;
 use function sprintf;
 use function str_replace;
+use function trim;
 
 #[AsCommand(name: 'make:builder')]
 class BuilderMakeCommand extends GeneratorCommand
@@ -58,7 +58,7 @@ class BuilderMakeCommand extends GeneratorCommand
      */
     protected function resolveStubPath($stub)
     {
-        return file_exists($customPath = $this->laravel->basePath(mb_trim($stub, '/')))
+        return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
             ? $customPath
             : __DIR__.'/../..'.$stub;
     }

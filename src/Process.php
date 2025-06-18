@@ -7,7 +7,7 @@ namespace Honed\Command;
 use Illuminate\Support\Facades\Pipeline;
 
 /**
- * @template TPayload
+ * @template TPayload of mixed
  */
 abstract class Process
 {

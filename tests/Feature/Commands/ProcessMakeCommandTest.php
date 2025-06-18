@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\File;
 
 beforeEach(function () {
-    File::cleanDirectory(app_path('Processs'));
+    File::cleanDirectory(app_path('Processes'));
 });
 
 it('makes', function () {
@@ -14,7 +14,7 @@ it('makes', function () {
         '--force' => true,
     ])->assertSuccessful();
 
-    $this->assertFileExists(app_path('Processs/UserCreationProcess.php'));
+    $this->assertFileExists(app_path('Processes/UserCreationProcess.php'));
 });
 
 it('processs for a name', function () {
@@ -23,5 +23,5 @@ it('processs for a name', function () {
     ])->expectsQuestion('What should the process be named?', 'UserCreationProcess')
         ->assertSuccessful();
 
-    $this->assertFileExists(app_path('Processs/UserCreationProcess.php'));
+    $this->assertFileExists(app_path('Processes/UserCreationProcess.php'));
 });
