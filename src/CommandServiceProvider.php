@@ -16,7 +16,6 @@ use Honed\Command\Commands\InvokableMakeCommand;
 use Honed\Command\Commands\ModalMakeCommand;
 use Honed\Command\Commands\PageMakeCommand;
 use Honed\Command\Commands\PartialMakeCommand;
-use Honed\Command\Commands\ProcessMakeCommand;
 use Honed\Command\Commands\PromptMakeCommand;
 use Honed\Command\Commands\QueryMakeCommand;
 use Honed\Command\Commands\RepositoryMakeCommand;
@@ -48,7 +47,6 @@ class CommandServiceProvider extends ServiceProvider
                 ModalMakeCommand::class,
                 PageMakeCommand::class,
                 PartialMakeCommand::class,
-                ProcessMakeCommand::class,
                 PromptMakeCommand::class,
                 QueryMakeCommand::class,
                 RepositoryMakeCommand::class,
