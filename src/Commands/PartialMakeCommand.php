@@ -10,9 +10,9 @@ use Symfony\Component\Console\Input\InputOption;
 
 use function is_null;
 use function mb_strtolower;
+use function mb_trim;
 use function pathinfo;
 use function str_replace;
-use function trim;
 
 #[AsCommand(name: 'make:partial')]
 class PartialMakeCommand extends JsMakeCommand
@@ -114,7 +114,7 @@ class PartialMakeCommand extends JsMakeCommand
         $extension = $this->option('extension');
 
         if ($extension) {
-            return trim($extension, '.');
+            return mb_trim($extension, '.');
         }
 
         return $this->extension;
