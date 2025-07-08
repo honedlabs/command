@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Honed\Command\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 use function trim;
 
 #[AsCommand(name: 'make:attribute')]
-class AttributeMakeCommand extends GeneratorCommand
+class AttributeMakeCommand extends GeneratorCommand implements PromptsForMissingInput
 {
     /**
      * The console command name.
@@ -85,7 +86,7 @@ class AttributeMakeCommand extends GeneratorCommand
      *
      * @return array<string,mixed>
      */
-    protected function attributeForMissingArgumentsUsing()
+    protected function promptForMissingArgumentsUsing()
     {
         return [
             'name' => [

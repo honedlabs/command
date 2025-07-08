@@ -2,10 +2,45 @@
 
 namespace {{ namespace }};
 
-class {{ class }}
+use Honed\Command\Flyweight;
+
+/**
+ * @template T of mixed
+ * 
+ * @extends \Honed\Command\Flyweight<T>
+ */
+class {{ class }} extends Flyweight
 {
+    /**
+     * The value of the flyweight.
+     * 
+     * @var T
+     */
+    protected $data;
+    
+    /**
+     * Create a new instance of the flyweight.
+     */
     public function __construct()
     {
         //
+    }
+
+    /**
+     * Get the value of the flyweight.
+     * 
+     * @return TReturn
+     */
+    public function get(): mixed
+    {
+        return $this->data;
+    }
+
+    /**
+     * Handle the call to the flyweight.
+     */
+    public function call(): void
+    {
+        // $this->data = 0;
     }
 }

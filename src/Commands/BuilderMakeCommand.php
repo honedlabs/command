@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Honed\Command\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -17,7 +18,7 @@ use function str_replace;
 use function trim;
 
 #[AsCommand(name: 'make:builder')]
-class BuilderMakeCommand extends GeneratorCommand
+class BuilderMakeCommand extends GeneratorCommand implements PromptsForMissingInput
 {
     /**
      * The console command name.

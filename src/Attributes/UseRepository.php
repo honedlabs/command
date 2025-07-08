@@ -7,15 +7,15 @@ namespace Honed\Command\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_CLASS)]
-class Repository
+class UseRepository
 {
     /**
      * Create a new attribute instance.
      *
-     * @param  class-string<\Honed\Command\Repository>  $repository
+     * @param  class-string<\Honed\Command\Repository>  $repositoryClass
      * @return void
      */
     public function __construct(
-        public string $repository
+        public string $repositoryClass
     ) {}
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Honed\Command\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
@@ -14,7 +15,7 @@ use function str_replace;
 use function trim;
 
 #[AsCommand(name: 'make:facade')]
-class FacadeMakeCommand extends GeneratorCommand
+class FacadeMakeCommand extends GeneratorCommand implements PromptsForMissingInput
 {
     /**
      * The console command name.

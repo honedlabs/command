@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Honed\Command\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 use function trim;
 
 #[AsCommand(name: 'make:flyweight')]
-class FlyweightMakeCommand extends GeneratorCommand
+class FlyweightMakeCommand extends GeneratorCommand implements PromptsForMissingInput
 {
     /**
      * The console command name.

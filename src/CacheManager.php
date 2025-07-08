@@ -90,9 +90,8 @@ abstract class CacheManager
      * Get the cache manager for a class.
      *
      * @param  class-string  $class
-     * @return CacheManager
      */
-    public static function cacheForModel($class)
+    public static function cacheForModel(string $class): self
     {
         $cache = static::resolveCacheName($class);
 
@@ -105,7 +104,7 @@ abstract class CacheManager
      * @param  class-string  $className
      * @return class-string<CacheManager>
      */
-    public static function resolveCacheName($className)
+    public static function resolveCacheName(string $className): string
     {
         $resolver = static::$cacheNameResolver ?? function (string $className) {
             $appNamespace = static::appNamespace();
@@ -123,11 +122,8 @@ abstract class CacheManager
 
     /**
      * Specify the default namespace that contains the application's model tables.
-     *
-     * @param  string  $namespace
-     * @return void
      */
-    public static function useNamespace($namespace)
+    public static function useNamespace(string $namespace): void
     {
         static::$namespace = $namespace;
     }
@@ -136,19 +132,16 @@ abstract class CacheManager
      * Specify the callback that should be invoked to guess the name of a model table.
      *
      * @param  Closure(class-string):class-string<CacheManager>  $callback
-     * @return void
      */
-    public static function guessCacheNamesUsing($callback)
+    public static function guessCacheNamesUsing(Closure $callback): void
     {
         static::$cacheNameResolver = $callback;
     }
 
     /**
      * Flush the cache's global configuration state.
-     *
-     * @return void
      */
-    public static function flushState()
+    public static function flushState(): void
     {
         static::$cacheNameResolver = null;
         static::$namespace = 'App\\Caches\\';
@@ -229,19 +222,16 @@ abstract class CacheManager
      * Flush all caches under the same namespace.
      *
      * @param  TParameter  $parameter
-     * @return void
      */
-    public function flush($parameter)
+    public function flush($parameter): void
     {
         Cache::forget($this->getKey($parameter));
     }
 
     /**
      * Get the application namespace for the application.
-     *
-     * @return string
      */
-    protected static function appNamespace()
+    protected static function appNamespace(): string
     {
         try {
             return Container::getInstance()

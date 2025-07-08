@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Honed\Command\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 use function trim;
 
 #[AsCommand(name: 'make:contract')]
-class ContractMakeCommand extends GeneratorCommand
+class ContractMakeCommand extends GeneratorCommand implements PromptsForMissingInput
 {
     /**
      * The console command name.

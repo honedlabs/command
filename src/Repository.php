@@ -30,9 +30,8 @@ abstract class Repository
      * Get the repository for a class.
      *
      * @param  class-string  $class
-     * @return Repository
      */
-    public static function repositoryForModel($class)
+    public static function repositoryForModel(string $class): self
     {
         $repository = static::resolveRepositoryName($class);
 
@@ -45,7 +44,7 @@ abstract class Repository
      * @param  class-string  $className
      * @return class-string<Repository>
      */
-    public static function resolveRepositoryName($className)
+    public static function resolveRepositoryName(string $className): string
     {
         $resolver = static::$repositoryNameResolver ?? function (string $className) {
             $appNamespace = static::appNamespace();
@@ -63,11 +62,8 @@ abstract class Repository
 
     /**
      * Specify the default namespace that contains the application's model tables.
-     *
-     * @param  string  $namespace
-     * @return void
      */
-    public static function useNamespace($namespace)
+    public static function useNamespace(string $namespace): void
     {
         static::$namespace = $namespace;
     }
@@ -76,19 +72,16 @@ abstract class Repository
      * Specify the callback that should be invoked to guess the name of a model table.
      *
      * @param  Closure(class-string):class-string<Repository>  $callback
-     * @return void
      */
-    public static function guessRepositoryNamesUsing($callback)
+    public static function guessRepositoryNamesUsing(Closure $callback): void
     {
         static::$repositoryNameResolver = $callback;
     }
 
     /**
      * Flush the repository's global configuration state.
-     *
-     * @return void
      */
-    public static function flushState()
+    public static function flushState(): void
     {
         static::$repositoryNameResolver = null;
         static::$namespace = 'App\\Repositories\\';
@@ -96,10 +89,8 @@ abstract class Repository
 
     /**
      * Get the application namespace for the application.
-     *
-     * @return string
      */
-    protected static function appNamespace()
+    protected static function appNamespace(): string
     {
         try {
             return Container::getInstance()

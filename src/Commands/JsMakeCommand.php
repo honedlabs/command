@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Honed\Command\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Support\Str;
 
 use function trim;
 
-abstract class JsMakeCommand extends GeneratorCommand
+abstract class JsMakeCommand extends GeneratorCommand implements PromptsForMissingInput
 {
     /**
      * Resolve the fully-qualified path to the stub.

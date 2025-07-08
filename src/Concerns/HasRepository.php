@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Honed\Command\Concerns;
 
-use Honed\Command\Attributes\Repository as RepositoryAttribute;
+use Honed\Command\Attributes\UseRepository;
 use Honed\Command\Repository;
 use ReflectionClass;
 
@@ -22,7 +22,7 @@ trait HasRepository
      *
      * @return TRepository
      */
-    public static function repository()
+    public static function repository(): Repository
     {
         return static::newRepository()
             ?? Repository::repositoryForModel(static::class);
@@ -33,13 +33,13 @@ trait HasRepository
      *
      * @return TRepository|null
      */
-    protected static function newRepository()
+    protected static function newRepository(): ?Repository
     {
         if (isset(static::$repository)) {
             return resolve(static::$repository);
         }
 
-        if ($repository = static::getRepositoryAttribute()) {
+        if ($repository = static::getUseRepositoryAttribute()) {
             return resolve($repository);
         }
 
@@ -51,15 +51,15 @@ trait HasRepository
      *
      * @return class-string<TRepository>|null
      */
-    protected static function getRepositoryAttribute()
+    protected static function getUseRepositoryAttribute(): ?string
     {
         $attributes = (new ReflectionClass(static::class))
-            ->getAttributes(RepositoryAttribute::class);
+            ->getAttributes(UseRepository::class);
 
         if ($attributes !== []) {
             $repository = $attributes[0]->newInstance();
 
-            return $repository->repository;
+            return $repository->repositoryClass;
         }
 
         return null;

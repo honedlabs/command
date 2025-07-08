@@ -6,8 +6,8 @@ namespace Workbench\App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Honed\Command\Attributes\Cache;
-use Honed\Command\Attributes\Repository;
+use Honed\Command\Attributes\UseCache;
+use Honed\Command\Attributes\UseRepository;
 use Honed\Command\Concerns\HasCache;
 use Honed\Command\Concerns\HasRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,8 +17,8 @@ use Workbench\App\Caches\UserCache;
 use Workbench\App\Repositories\UserRepository;
 use Workbench\Database\Factories\UserFactory;
 
-#[Repository(UserRepository::class)]
-#[Cache(UserCache::class)]
+#[UseRepository(UserRepository::class)]
+#[UseCache(UserCache::class)]
 class User extends Authenticatable
 {
     /**

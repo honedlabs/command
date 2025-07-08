@@ -7,15 +7,15 @@ namespace Honed\Command\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_CLASS)]
-class Cache
+class UseCache
 {
     /**
      * Create a new attribute instance.
      *
-     * @param  class-string<\Honed\Command\CacheManager>  $cache
+     * @param  class-string<\Honed\Command\CacheManager>  $cacheClass
      * @return void
      */
     public function __construct(
-        public string $cache
+        public string $cacheClass
     ) {}
 }
