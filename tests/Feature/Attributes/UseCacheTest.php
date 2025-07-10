@@ -8,7 +8,7 @@ use Workbench\App\Models\User;
 
 it('has attribute', function () {
     $attribute = new UseCache(UserCache::class);
-    
+
     expect($attribute)
         ->toBeInstanceOf(UseCache::class)
         ->cacheClass->toBe(UserCache::class);
