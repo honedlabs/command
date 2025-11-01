@@ -9,6 +9,7 @@ use Honed\Command\Commands\BuilderMakeCommand;
 use Honed\Command\Commands\CacheMakeCommand;
 use Honed\Command\Commands\ConcernMakeCommand;
 use Honed\Command\Commands\ContractMakeCommand;
+use Honed\Command\Commands\DecoratorMakeCommand;
 use Honed\Command\Commands\DriverMakeCommand;
 use Honed\Command\Commands\FacadeMakeCommand;
 use Honed\Command\Commands\FlyweightMakeCommand;
@@ -40,6 +41,7 @@ class CommandServiceProvider extends ServiceProvider
                 CacheMakeCommand::class,
                 ConcernMakeCommand::class,
                 ContractMakeCommand::class,
+                DecoratorMakeCommand::class,
                 DriverMakeCommand::class,
                 FacadeMakeCommand::class,
                 FlyweightMakeCommand::class,

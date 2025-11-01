@@ -8,6 +8,10 @@ beforeEach(function () {
     File::cleanDirectory(app_path('Services'));
 });
 
+afterEach(function () {
+    File::cleanDirectory(app_path('Services'));
+});
+
 it('makes', function () {
     $this->artisan('make:service', [
         'name' => 'GithubService',
