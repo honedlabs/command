@@ -192,17 +192,14 @@ class FacadeMakeCommand extends GeneratorCommand implements PromptsForMissingInp
     /**
      * Replace all double line breaks with a single line break.
      *
-     * @param  string  &$stub
-     *
-     * @param-out string|null $stub
-     *
+     * @param  string  $stub
      * @return $this
      */
     protected function replaceDoubleLineBreaks(&$stub)
     {
         // Replace 3 or more newlines with 2 to preserve single blank lines
-        $stub = preg_replace('/\n{3,}/', "\n\n", (string) $stub);
-        $stub = preg_replace('/(\r\n){3,}/', "\r\n\r\n", (string) $stub);
+        $stub = preg_replace('/\n{3,}/', "\n\n", $stub) ?? $stub;
+        $stub = preg_replace('/(\r\n){3,}/', "\r\n\r\n", $stub) ?? $stub;
 
         return $this;
     }

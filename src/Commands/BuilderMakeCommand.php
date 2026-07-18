@@ -136,7 +136,7 @@ class BuilderMakeCommand extends GeneratorCommand implements PromptsForMissingIn
 
         if (! $model) {
             $model = '\\Illuminate\\Database\\Eloquent\\Model';
-        } elseif (in_array($model, $this->possibleModels())) {
+        } elseif (in_array($model, $this->findAvailableModels())) {
             $model = '\\'.$this->qualifyModel($model);
         } else {
             $this->error('The model '.$model.' does not exist.');
@@ -160,7 +160,7 @@ class BuilderMakeCommand extends GeneratorCommand implements PromptsForMissingIn
         /** @var string|null */
         $model = $this->option('model');
 
-        if (! $model || ! in_array($model, $this->possibleModels())) {
+        if (! $model || ! in_array($model, $this->findAvailableModels())) {
             return $this;
         }
 
