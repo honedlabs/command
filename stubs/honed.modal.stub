@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3'
 import { useModal } from '@honed/modal'
-import { Text } from "@/Components/Text";
-import { Button } from '@/Components/Button'
-import Modal from '@/Components/Modal'
+import Text from '@/Components/Text/Text.vue'
+import Button from '@/Components/Button/Button.vue'
+import Modal from '@/Components/Modal/Modal.vue'
+import ModalContent from '@/Components/Modal/ModalContent.vue'
+import ModalHeader from '@/Components/Modal/ModalHeader.vue'
+import ModalTitle from '@/Components/Modal/ModalTitle.vue'
+import ModalBody from '@/Components/Modal/ModalBody.vue'
+import ModalFooter from '@/Components/Modal/ModalFooter.vue'
 
 interface Props {
     
@@ -18,20 +23,20 @@ const { show, close, redirect } = useModal();
 <template>
     <Head title="" />
     <Modal :open="show" @update:open="close">
-        <Modal.Content @after-leave="redirect">
-            <Modal.Header :close>
-                <Modal.Title>
+        <ModalContent @after-leave="redirect">
+            <ModalHeader :close>
+                <ModalTitle>
 
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
+                </ModalTitle>
+            </ModalHeader>
+            <ModalBody>
                 
-            </Modal.Body>
-            <Modal.Footer>
+            </ModalBody>
+            <ModalFooter>
                 <Button variant="ghost" @click="close">
                     Cancel
                 </Button>
-            </Modal.Footer>
-        </Modal.Content>
+            </ModalFooter>
+        </ModalContent>
     </Modal>
 </template>

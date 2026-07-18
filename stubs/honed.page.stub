@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3'
-import { AppLayout } from '@/Layouts'
-import { Field } from '@/Components/Field'
-import { Text } from "@/Components/Text";
-import { Button } from '@/Components/Button'
+import AppLayout from '@/Layouts/AppLayout/AppLayout.vue'
+import Field from '@/Components/Field/Field.vue'
+import Text from '@/Components/Text/Text.vue'
+import Button from '@/Components/Button/Button.vue'
 
 defineOptions({ layout: AppLayout })
 

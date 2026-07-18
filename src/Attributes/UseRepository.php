@@ -13,7 +13,6 @@ class UseRepository
      * Create a new attribute instance.
      *
      * @param  class-string<\Honed\Command\Repository>  $repositoryClass
-     * @return void
      */
     public function __construct(
         public string $repositoryClass

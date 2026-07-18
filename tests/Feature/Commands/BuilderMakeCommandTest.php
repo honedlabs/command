@@ -34,7 +34,7 @@ it('accepts a model option', function () {
     ])->assertSuccessful();
 
     $builder = file_get_contents(app_path('Builders/ProductBuilder.php'));
-    expect($builder)->toContain('@template TModel of \App\Models\Product');
+    expect($builder)->toContain('@extends \\Illuminate\\Database\\Eloquent\\Builder<\\App\\Models\\Product>');
 
     $model = file_get_contents(app_path('Models/Product.php'));
     expect($model)->toContain('return new ProductBuilder($query);');

@@ -5,9 +5,7 @@ namespace {{ namespace }};
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * @template TModel of {{ model }}
- * 
- * @extends \Illuminate\Database\Eloquent\Builder<TModel>
+ * @extends \Illuminate\Database\Eloquent\Builder<{{ model }}>
  */
 class {{ class }} extends Builder
 {
